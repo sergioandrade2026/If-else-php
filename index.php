@@ -1,48 +1,65 @@
 <?php
+// Verifica se os dados foram enviados via POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $peso = $_POST["peso"];
+    $altura = $_POST["altura"];
 
-echo "<p> IMC </P>";
-
-$peso = 70;
-$altura = 1.70;
-
-$imc = $peso / $altura ** 2; 
-
-
-$imc = 39;
-
-echo "O IMC é: $imc";
-
-
-if ($imc < 16) {
-echo " Magreza grau III";
+    if ($peso > 0 && $altura > 0) {
+        $imc = $peso / ($altura ** 2);
+    }
 }
-else if ($imc >= 16 && $imc <= 16.9 ) {
-echo " Magreza grau II";
-}
-
-else if ($imc >= 17 && $imc <= 18.4 ) {
-echo " Magreza grau I";
-}
-
-else if ($imc >= 18.5 && $imc <= 24.9 ) {
-echo " Eutrofia";
-}
-
-else if ($imc >= 25 && $imc <= 29.9 ) {
-echo " Pré-obesidade";
-}
-
-else if ($imc >= 30 && $imc <= 34.9 ) {
-echo " Obesidade moderada (grau I)";
-}
-
-else if ($imc >= 35 && $imc <= 39.9 ) {
-echo " Obesidade severa (grau II)";
-}
-
-else{
-echo " Obesidade muito severa (grau III)";
-
-}
-
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de IMC</title>
+</head>
+<body>
+
+<h2>Calcular IMC</h2>
+
+<form method="POST">
+    <label>Peso (kg):</label>
+    <input type="number" step="0.01" name="peso" required><br><br>
+
+    <label>Altura (m):</label>
+    <input type="number" step="0.01" name="altura" required><br><br>
+
+    <button type="submit">Calcular</button>
+</form>
+
+<?php
+// Só mostra o resultado se já foi enviado
+if (isset($imc)) {
+    echo "<p>O IMC é: " . number_format($imc, 2) . "</p>";
+
+    if ($imc < 16) {
+        echo "Magreza grau III";
+    }
+    else if ($imc <= 16.9) {
+        echo "Magreza grau II";
+    }
+    else if ($imc <= 18.4) {
+        echo "Magreza grau I";
+    }
+    else if ($imc <= 24.9) {
+        echo "Eutrofia";
+    }
+    else if ($imc <= 29.9) {
+        echo "Pré-obesidade";
+    }
+    else if ($imc <= 34.9) {
+        echo "Obesidade moderada (grau I)";
+    }
+    else if ($imc <= 39.9) {
+        echo "Obesidade severa (grau II)";
+    }
+    else {
+        echo "Obesidade muito severa (grau III)";
+    }
+}
+?>
+
+</body>
+</html>
