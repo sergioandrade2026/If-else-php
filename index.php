@@ -1,14 +1,4 @@
-<?php
-// Verifica se os dados foram enviados via POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $peso = $_POST["peso"];
-    $altura = $_POST["altura"];
 
-    if ($peso > 0 && $altura > 0) {
-        $imc = $peso / ($altura ** 2);
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +20,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 <?php
-// Só mostra o resultado se já foi enviado
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $peso = $_POST["peso"];
+    $altura = $_POST["altura"];
+
+    if ($peso > 0 && $altura > 0) {
+        $imc = $peso / ($altura ** 2);
+    }
+}
+
+
 if (isset($imc)) {
     echo "<p>O IMC é: " . number_format($imc, 2) . "</p>";
 
