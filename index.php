@@ -1,4 +1,15 @@
+<?php
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $peso = filter_input(INPUT_POST, "peso", FILTER_VALIDATE_FLOAT);
+    $altura = filter_input(INPUT_POST, "altura", FILTER_VALIDATE_FLOAT);
+
+    if ($peso !== false && $altura !== false && $altura > 0) {
+        $imc = $peso / ($altura ** 2);
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -19,50 +30,20 @@
     <button type="submit">Calcular</button>
 </form>
 
-</body>
-</html>
-    
-
 <?php
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $peso = filter_input(INPUT_POST, "peso", FILTER_VALIDATE_FLOAT);
-    $altura = filter_input(INPUT_POST, "altura", FILTER_VALIDATE_FLOAT);
-
-
-    if ($peso > 0 && $altura > 0) {
-        $imc = $peso / ($altura ** 2);
-    }
-}
-
-
 if (isset($imc)) {
     echo "<p>O IMC é: " . number_format($imc, 2) . "</p>";
 
-    if ($imc < 16) {
-        echo "Magreza grau III";
-    }
-    else if ($imc <= 16.9) {
-        echo "Magreza grau II";
-    }
-    else if ($imc <= 18.4) {
-        echo "Magreza grau I";
-    }
-    else if ($imc <= 24.9) {
-        echo "Eutrofia";
-    }
-    else if ($imc <= 29.9) {
-        echo "Pré-obesidade";
-    }
-    else if ($imc <= 34.9) {
-        echo "Obesidade moderada (grau I)";
-    }
-    else if ($imc <= 39.9) {
-        echo "Obesidade severa (grau II)";
-    }
-    else {
-        echo "Obesidade muito severa (grau III)";
-    }
+    if ($imc < 16) echo "Magreza grau III";
+    else if ($imc <= 16.9) echo "Magreza grau II";
+    else if ($imc <= 18.4) echo "Magreza grau I";
+    else if ($imc <= 24.9) echo "Eutrofia";
+    else if ($imc <= 29.9) echo "Pré-obesidade";
+    else if ($imc <= 34.9) echo "Obesidade moderada (grau I)";
+    else if ($imc <= 39.9) echo "Obesidade severa (grau II)";
+    else echo "Obesidade muito severa (grau III)";
 }
 ?>
 
+</body>
+</html>
