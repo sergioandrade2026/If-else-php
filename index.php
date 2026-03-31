@@ -25,9 +25,10 @@
 
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $peso = $_POST["peso"];
-    $altura = $_POST["altura"];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $peso = filter_input(INPUT_POST, "peso", FILTER_VALIDATE_FLOAT);
+    $altura = filter_input(INPUT_POST, "altura", FILTER_VALIDATE_FLOAT);
+
 
     if ($peso > 0 && $altura > 0) {
         $imc = $peso / ($altura ** 2);
