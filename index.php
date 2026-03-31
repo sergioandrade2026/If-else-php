@@ -19,6 +19,10 @@
     <button type="submit">Calcular</button>
 </form>
 
+</body>
+</html>
+    
+
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -61,5 +65,3 @@ if (isset($imc)) {
 }
 ?>
 
-</body>
-</html>
