@@ -9,7 +9,7 @@
 <body>
 
 
-<h2>Calculadora IRFP 2026</h2>
+<h2>Calculadora IRFP 2026 </h2>
 <h4>Insira o seu salário abaixo:</h4>
 
 
